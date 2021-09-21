@@ -14,12 +14,16 @@
                         <table>
                             <tr>
                                 <th>Name</th>
-                                <th>Description</th>
+                                <th>Style</th>
+                                <th>Brand</th>
+                                <th>Sku</th>
                             </tr>
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->product_name}}</td>
-                                    <td>{{$product->description}}</td>
+                                    <td>{{$product->style}}</td>
+                                    <td>{{$product->brand}}</td>
+                                    <td>{{$product->sku}}</td>
                                 </tr>
                             @endforeach
                         </table>
