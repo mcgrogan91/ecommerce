@@ -42,7 +42,9 @@ class CreateProductTable extends Migration
             $table->string('product_type');
             $table->integer('shipping_price');
             $table->text('note');
-            $table->integer('admin_id')->nullable(); // This is presumably a schema leftover
+            $table->integer('admin_id');
+
+            $table->foreign('admin_id')->references('id')->on('users');
         });
     }
 

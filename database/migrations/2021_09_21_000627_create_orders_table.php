@@ -73,7 +73,7 @@ class CreateOrderTable extends Migration
             $table->integer('tax_total_cents');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

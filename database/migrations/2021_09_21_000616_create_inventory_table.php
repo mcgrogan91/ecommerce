@@ -48,7 +48,7 @@ class CreateInventoryTable extends Migration
             $table->double('height');
             $table->text('note');
 
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
