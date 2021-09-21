@@ -16,11 +16,11 @@ class InventoryController extends Controller
      */
     public function index(InventoryRepository $repository)
     {
-        $user = Auth::user();
+        $query = $repository->getInventoryForUser(
+            Auth::user(),
+            request()->get('query', null)
+        );
 
-        /** @var Builder $a */
-        $query = $repository->getInventoryForUser($user);
-        //dd($query->paginate(10));
         return view('inventory', [
             'inventory' => $query->paginate(20)
         ]);
