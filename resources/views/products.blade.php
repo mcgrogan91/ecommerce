@@ -16,14 +16,14 @@
                                 <th>Name</th>
                                 <th>Style</th>
                                 <th>Brand</th>
-                                <th>Sku</th>
+                                <th>Skus</th>
                             </tr>
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->style}}</td>
                                     <td>{{$product->brand}}</td>
-                                    <td>{{$product->sku}}</td>
+                                    <td>{{ implode(", ", $product->getSkus())}}</td>
                                 </tr>
                             @endforeach
                         </table>
