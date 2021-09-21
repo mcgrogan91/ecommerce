@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="{{ route('products') }}">My Link</a>
+                    <a href="{{ route('products.index') }}">My Link</a>
                     You are logged in! {{config('app.name')}}
                 </div>
             </div>
