@@ -17,7 +17,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password'
     ];
 
 
@@ -28,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'password_hash', 'remember_token',
+        'password', 'password_hash', 'superadmin', 'remember_token',
     ];
 
     /**
@@ -39,5 +38,10 @@ class User extends Authenticatable
     public function getAuthPassword()
     {
         return $this->password_hash;
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Product', 'admin_id', 'id');
     }
 }
