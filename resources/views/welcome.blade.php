@@ -63,6 +63,9 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -80,8 +83,8 @@
             <div class="content">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/products') }}" class="btn">My Products</a>
-                        <a href="{{ url('/inventory') }}" class="btn">My Inventory</a>
+                        <a href="{{ url('/products') }}" class="btn btn-info">My Products</a>
+                        <a href="{{ url('/inventory') }}" class="btn btn-info">My Inventory</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
