@@ -40,7 +40,7 @@ class ProductRepositoryTest extends TestCase
     /**
      * @dataProvider getProductCounts
      */
-    public function testgetProductsForUser($user, $expected)
+    public function testGetProductsForUser($user, $expected)
     {
         $user = User::find($user);
         $this->assertCount($expected, $this->repository->getProductsForUser($user));
