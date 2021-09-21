@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateOrderTable
+ * Class CreateOrdersTable
 Orders
     Columns:
         id int
@@ -35,7 +35,7 @@ Orders
         created_at timestamp
         updated_at timestamp
  */
-class CreateOrderTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.

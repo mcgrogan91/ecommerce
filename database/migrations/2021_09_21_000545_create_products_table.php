@@ -22,7 +22,7 @@ Products
         admin_id int
  *
  */
-class CreateProductTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
