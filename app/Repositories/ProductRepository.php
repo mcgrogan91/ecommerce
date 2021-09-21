@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Product;
+use App\User;
 
 class ProductRepository
 {
@@ -16,5 +17,10 @@ class ProductRepository
     public function getProducts()
     {
         return Product::all();
+    }
+
+    public function getProductsForUser(User $user)
+    {
+        return $user->products;
     }
 }
