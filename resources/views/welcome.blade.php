@@ -78,17 +78,14 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/products') }}" class="btn">My Products</a>
+                        <a href="{{ url('/inventory') }}" class="btn">My Inventory</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+                    @endauth
+                @endif
             </div>
         </div>
     </body>

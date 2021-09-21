@@ -11,13 +11,13 @@
                     @if (count($products) === 0)
                         You have no products. Add one!
                     @else
-                        <table>
-                            <tr>
+                        <table class="table table-striped">
+                            <thead>
                                 <th>Name</th>
                                 <th>Style</th>
                                 <th>Brand</th>
                                 <th>Skus</th>
-                            </tr>
+                            </thead>
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->product_name}}</td>
