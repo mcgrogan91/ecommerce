@@ -43,8 +43,8 @@
                                     <td>{{$record->quantity}}</td>
                                     <td>{{$record->color}}</td>
                                     <td>{{$record->size}}</td>
-                                    <td>{{$record->price_cents}}</td>
-                                    <td>{{$record->cost_cents}}</td>
+                                    <td>${{number_format($record->price_cents / 100, 2)}}</td>
+                                    <td>${{number_format($record->cost_cents / 100, 2)}}</td>
                                 </tr>
                             @endforeach
                         </table>

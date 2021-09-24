@@ -20,7 +20,11 @@
                             </thead>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{$product->product_name}}</td>
+                                    <td>
+                                        <a href="{{ route('inventory.index', ['query' => $product->product_name]) }}">
+                                        {{$product->product_name}}
+                                        </a>
+                                    </td>
                                     <td>{{$product->style}}</td>
                                     <td>{{$product->brand}}</td>
                                     <td>{{ implode(", ", $product->getSkus())}}</td>

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filters\InventoryFilter;
 use App\User;
 use Illuminate\Database\Query\Builder;
 use Tests\TestCase;
@@ -24,35 +25,82 @@ class InventoryRepositoryTest extends TestCase
             "No search" => [
                 'user_id' => 24,
                 'search' => null,
-                'count' => 450
+                'sort' => null,
+                'count' => 450,
+                'expectedFirstItem' => null
             ],
             "id search" => [
                 'user_id' => 24,
-                'search' => 138,
-                'count' => 2
+                'search' => "138",
+                'sort' => null,
+                'count' => 2,
+                'expectedFirstItem' => null
             ],
             "sku search" => [
                 'user_id' => 24,
                 'search' => "INXAWD",
-                'count' => 1
+                'sort' => null,
+                'count' => 1,
+                'expectedFirstItem' => null
             ],
+            "sku search" => [
+                'user_id' => 24,
+                'search' => "Slippers",
+                'sort' => null,
+                'count' => 10,
+                'expectedFirstItem' => null
+            ],
+            "sku ordered search" => [
+                'user_id' => 24,
+                'search' => "Slippers",
+                'sort' => [
+                    'column' => 'quantity',
+                    'direction' => 'asc'
+                ],
+                'count' => 10,
+                'expectedFirstItem' => 7046
+            ],
+//            "bad sku ordered search" => [
+//                'user_id' => 24,
+//                'search' => "Slippers",
+//                'sort' => [
+//                    'column' => '-- SELECT * from users;',
+//                    'direction' => 'asc'
+//                ],
+//                'count' => 10,
+//                'expectedFirstItem' => 10827
+//            ],
             "bad search" => [
                 'user_id' => 24,
                 'search' => "INVALID",
-                'count' => 0
+                'sort' => null,
+                'count' => 0,
+                'expectedFirstItem' => null
             ]
         ];
     }
     /**
      * @dataProvider getInventorySearches
      */
-    public function testGetInventoryForUser($userId, $search, $expected)
+    public function testGetInventoryForUser($userId, $search, $sort, $expected, $firstId)
     {
         $user = User::find($userId);
 
+        $filter = new InventoryFilter();
+        $filter->addFilter('query', $search);
+        if ($sort) {
+            $filter->addSort($sort['column'], $sort['direction']);
+        }
+
         /** @var Builder $result */
-        $result = $this->repository->getInventoryForUser($user, $search);
+        $result = $this->repository->getInventoryForUser($user, $filter);
+
 
         $this->assertEquals($expected, $result->count());
+
+        if ($firstId) {
+            $this->assertEquals($firstId, $result->first()->id);
+        }
     }
+
 }
